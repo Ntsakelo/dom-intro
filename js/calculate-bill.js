@@ -22,11 +22,11 @@ calcBtn.addEventListener("click", function () {
   let billArr = billString.value.split(",");
   let billTot = 0;
   for (let i = 0; i < billArr.length; i++) {
-    if (billArr[i].toLowerCase() === "sms") {
+    if (billArr[i].toLowerCase().trim() === "sms") {
       billTot += 0.75;
-    } else if (billArr[i].toLowerCase() === "call") {
+    } else if (billArr[i].toLowerCase().trim() === "call") {
       billTot += 2.75;
-    } else if (billArr[i].toLowerCase() !== "sms" || billArr[i] !== "call") {
+    } else if (billArr[i].toLowerCase().trim() !== "sms" || billArr[i].toLowerCase().trim() !== "call") {
       billTot += 0;
     }
   }
