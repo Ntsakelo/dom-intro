@@ -49,7 +49,7 @@ addBtn.addEventListener("click", function () {
     totalBill = Number(billTotal2.innerHTML) + 0.75;
     billTotal2.innerHTML = totalBill.toFixed(2);
   }
-  if (totalBill > 30 && totalBill < 50) {
+  if (totalBill > 30 && totalBill <= 50) {
     totElm.classList.add("warning");
   }
   if (totalBill > 50) {

@@ -72,7 +72,7 @@ btnAdd.addEventListener("click", function () {
   }
   if (
     newTotal > Number(warningLevel.value) &&
-    newTotal < Number(criticalLevel.value)
+    newTotal <= Number(criticalLevel.value)
   ) {
     colorSetting.classList.add("warning");
   }

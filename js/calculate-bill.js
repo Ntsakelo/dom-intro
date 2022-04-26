@@ -32,7 +32,7 @@ calcBtn.addEventListener("click", function () {
   }
   totalElm.classList.remove("warning");
   totalElm.classList.remove("danger");
-  if (billTot > 20 && billTot < 30) {
+  if (billTot > 20 && billTot <= 30) {
     totalElm.classList.add("warning");
   } else if (billTot > 30) {
     totalElm.classList.add("danger");

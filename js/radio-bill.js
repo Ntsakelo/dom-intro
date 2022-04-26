@@ -37,7 +37,7 @@ addBtn3.addEventListener("click", function () {
     finalTotal = Number(billTotal3.innerHTML) + 0.75;
     billTotal3.innerHTML = finalTotal.toFixed(2);
   }
-  if (finalTotal > 30 && finalTotal < 50) {
+  if (finalTotal > 30 && finalTotal <= 50) {
     color.classList.add("warning");
   } else if (finalTotal > 50) {
     color.classList.add("danger");
