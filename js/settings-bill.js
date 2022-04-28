@@ -51,32 +51,34 @@ updtBtn.addEventListener("click", function () {
 });
 
 btnAdd.addEventListener("click", function () {
-  let currentCost = 0;
-  let newTotal = 0;
-  colorSetting.classList.remove("warning");
-  colorSetting.classList.remove("danger");
   const radioBtn = document.querySelector(".billItemTypeWithSettings:checked");
   if (radioBtn.value === "call") {
-    currentCost = Number(callCost.value) + Number(callTotalSettings.innerHTML);
-    callTotalSettings.innerHTML = currentCost.toFixed(2);
+    callTotalSettings.innerHTML = (
+      Number(callCost.value) + Number(callTotalSettings.innerHTML)
+    ).toFixed(2);
 
-    newTotal = Number(callCost.value) + Number(totalSettings.innerHTML);
-    totalSettings.innerHTML = newTotal.toFixed(2);
+    totalSettings.innerHTML = (
+      Number(callCost.value) + Number(totalSettings.innerHTML)
+    ).toFixed(2);
   }
   if (radioBtn.value === "sms") {
-    currentCost = Number(smsCost.value) + Number(smsTotalSettings.innerHTML);
-    smsTotalSettings.innerHTML = currentCost.toFixed(2);
+    smsTotalSettings.innerHTML = (
+      Number(smsCost.value) + Number(smsTotalSettings.innerHTML)
+    ).toFixed(2);
 
-    newTotal = Number(smsCost.value) + Number(totalSettings.innerHTML);
-    totalSettings.innerHTML = newTotal.toFixed(2);
+    totalSettings.innerHTML = (
+      Number(smsCost.value) + Number(totalSettings.innerHTML)
+    ).toFixed(2);
   }
+  colorSetting.classList.remove("warning");
+  colorSetting.classList.remove("danger");
   if (
-    newTotal > Number(warningLevel.value) &&
-    newTotal <= Number(criticalLevel.value)
+    Number(totalSettings.innerHTML) >= Number(warningLevel.value) &&
+    Number(totalSettings.innerHTML) < Number(criticalLevel.value)
   ) {
     colorSetting.classList.add("warning");
   }
-  if (newTotal > Number(criticalLevel.value)) {
+  if (Number(totalSettings.innerHTML) >= Number(criticalLevel.value)) {
     colorSetting.classList.add("danger");
   }
 });

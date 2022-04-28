@@ -21,38 +21,29 @@ const totElm = document.querySelector(".red");
 
 //add event listener and bill function
 addBtn.addEventListener("click", function () {
-  let currentCallTot = 0;
-  let currentSmsTot = 0;
-  let totalBill = 0;
-  totElm.classList.remove("warning");
-  totElm.classList.remove("danger");
-
   if (billText.value.toLowerCase() === "call") {
-    currentCallTot = Number(callTotal.innerHTML) + 2.75;
-    callTotal.innerHTML = currentCallTot.toFixed(2);
-    totalBill = Number(billTotal2.innerHTML) + 2.75;
-    billTotal2.innerHTML = totalBill.toFixed(2);
+    callTotal.innerHTML = (Number(callTotal.innerHTML) + 2.75).toFixed(2);
+    billTotal2.innerHTML = (Number(billTotal2.innerHTML) + 2.75).toFixed(2);
+  }
+  if (billText.value.toLowerCase() === "sms") {
+    smsTotal.innerHTML = (Number(smsTotal.innerHTML) + 0.75).toFixed(2);
+
+    billTotal2.innerHTML = (Number(billTotal2.innerHTML) + 0.75).toFixed(2);
   }
   if (
     billText.value.toLowerCase() !== "call" ||
     billText.value.toLowerCase() !== "sms"
   ) {
-    currentCallTot = Number(callTotal.innerHTML) + 0;
-    callTotal.innerHTML = currentCallTot.toFixed(2);
-    totalBill = Number(billTotal2.innerHTML) + 0;
-    billTotal2.innerHTML = totalBill.toFixed(2);
+    callTotal.innerHTML = (Number(callTotal.innerHTML) + 0).toFixed(2);
+    smsTotal.innerHTML = (Number(smsTotal.innerHTML) + 0).toFixed(2);
+    billTotal2.innerHTML = (Number(billTotal2.innerHTML) + 0).toFixed(2);
   }
-  if (billText.value.toLowerCase() === "sms") {
-    currentSmsTot = Number(smsTotal.innerHTML) + 0.75;
-
-    smsTotal.innerHTML = currentSmsTot.toFixed(2);
-    totalBill = Number(billTotal2.innerHTML) + 0.75;
-    billTotal2.innerHTML = totalBill.toFixed(2);
-  }
-  if (totalBill > 30 && totalBill <= 50) {
+  totElm.classList.remove("warning");
+  totElm.classList.remove("danger");
+  if (Number(billTotal2.innerHTML) >= 30 && Number(billTotal2.innerHTML) < 50) {
     totElm.classList.add("warning");
   }
-  if (totalBill > 50) {
+  if (Number(billTotal2.innerHTML) >= 50) {
     totElm.classList.add("danger");
   }
 });

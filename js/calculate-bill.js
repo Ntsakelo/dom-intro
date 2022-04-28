@@ -26,15 +26,18 @@ calcBtn.addEventListener("click", function () {
       billTot += 0.75;
     } else if (billArr[i].toLowerCase().trim() === "call") {
       billTot += 2.75;
-    } else if (billArr[i].toLowerCase().trim() !== "sms" || billArr[i].toLowerCase().trim() !== "call") {
+    } else if (
+      billArr[i].toLowerCase().trim() !== "sms" ||
+      billArr[i].trim() !== "call"
+    ) {
       billTot += 0;
     }
   }
   totalElm.classList.remove("warning");
   totalElm.classList.remove("danger");
-  if (billTot > 20 && billTot <= 30) {
+  if (billTot >= 20 && billTot < 30) {
     totalElm.classList.add("warning");
-  } else if (billTot > 30) {
+  } else if (billTot >= 30) {
     totalElm.classList.add("danger");
   }
 
