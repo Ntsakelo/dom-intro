@@ -32,6 +32,10 @@ let smsCost = document.querySelector(".smsCostSetting");
 let warningLevel = document.querySelector(".warningLevelSetting");
 let criticalLevel = document.querySelector(".criticalLevelSetting");
 updtBtn.addEventListener("click", function () {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 300ea438a2705ba6efbe628338e6d3c6f412a3ae
   const smsBtn = document.querySelector(".sms");
   const callBtn = document.querySelector(".call");
   let thisAmount = Number(totalSettings.innerHTML);
@@ -51,6 +55,11 @@ updtBtn.addEventListener("click", function () {
   if (callBtn.value === "CALL") {
     callBtn.value = "call";
   }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> a65a1bc7e8f88f9b6222d9bc533583f3082c83e9
+>>>>>>> 300ea438a2705ba6efbe628338e6d3c6f412a3ae
   if (callCost.value !== "") {
     callCost.value = Number(callCost.value);
   }
@@ -64,16 +73,37 @@ updtBtn.addEventListener("click", function () {
     criticalLevel.value = Number(criticalLevel.value);
   }
 });
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> a65a1bc7e8f88f9b6222d9bc533583f3082c83e9
+>>>>>>> 300ea438a2705ba6efbe628338e6d3c6f412a3ae
 btnAdd.addEventListener("click", function () {
   const radioBtn = document.querySelector(".billItemTypeWithSettings:checked");
   let callPrice = Number(callTotalSettings.innerHTML);
   let smsPrice = Number(smsTotalSettings.innerHTML);
   let totalPrice = Number(totalSettings.innerHTML);
   if (totalPrice >= Number(criticalLevel.value) && radioBtn.value === "sms") {
+<<<<<<< HEAD
     radioBtn.value = "SMS";
   }
   if (totalPrice >= Number(criticalLevel.value) && radioBtn.value === "call") {
     radioBtn.value = "CALL";
+=======
+<<<<<<< HEAD
+    radioBtn.value = "SMS";
+  }
+  if (totalPrice >= Number(criticalLevel.value) && radioBtn.value === "call") {
+    radioBtn.value = "CALL";
+=======
+    radioBtn.value = "";
+  }
+  if (totalPrice >= Number(criticalLevel.value) && radioBtn.value === "call") {
+    radioBtn.value = "";
+>>>>>>> a65a1bc7e8f88f9b6222d9bc533583f3082c83e9
+>>>>>>> 300ea438a2705ba6efbe628338e6d3c6f412a3ae
   }
   if (radioBtn.value === "call") {
     callPrice += Number(callCost.value);
