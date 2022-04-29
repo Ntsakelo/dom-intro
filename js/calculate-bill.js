@@ -22,17 +22,20 @@ calcBtn.addEventListener("click", function () {
   let billArr = billString.value.split(",");
   let billTot = 0;
   for (let i = 0; i < billArr.length; i++) {
-    if (billArr[i].toLowerCase() === "sms") {
+    let billType = billArr[i].toLowerCase().trim();
+    if (billType === "sms") {
       billTot += 0.75;
-    } else if (billArr[i].toLowerCase() === "call") {
+    } else if (billType === "call") {
       billTot += 2.75;
+    } else if (billType !== "sms" || billType !== "call") {
+      billTot += 0;
     }
   }
   totalElm.classList.remove("warning");
   totalElm.classList.remove("danger");
-  if (billTot > 20 && billTot < 30) {
+  if (billTot >= 20 && billTot < 30) {
     totalElm.classList.add("warning");
-  } else if (billTot > 30) {
+  } else if (billTot >= 30) {
     totalElm.classList.add("danger");
   }
 
