@@ -10,7 +10,6 @@
 // * add the appropriate value to the running total
 // * add nothing for invalid values that is not 'call' or 'sms'.
 // * display the latest total on the screen
-const lable = document.querySelectorAll(".billItem");
 const addBtn3 = document.querySelector(".radioBillAddBtn");
 const callTotal3 = document.querySelector(".callTotalTwo");
 const smsTotal3 = document.querySelector(".smsTotalTwo");
@@ -19,21 +18,25 @@ const color = document.querySelector(".orange");
 
 addBtn3.addEventListener("click", function () {
   const radioBill = document.querySelector(".billItemTypeRadio:checked");
-  if (radioBill.value === "call") {
-    callTotal3.innerHTML = (Number(callTotal3.innerHTML) + 2.75).toFixed(2);
 
-    billTotal3.innerHTML = (Number(billTotal3.innerHTML) + 2.75).toFixed(2);
+  let callElement = Number(callTotal3.innerHTML);
+  let smsElement = Number(smsTotal3.innerHTML);
+  let theTotal = Number(billTotal3.innerHTML);
+  if (radioBill.value === "call") {
+    callElement += 2.75;
+    callTotal3.innerHTML = callElement.toFixed(2);
   }
   if (radioBill.value === "sms") {
-    smsTotal3.innerHTML = (Number(smsTotal3.innerHTML) + 0.75).toFixed(2);
-
-    billTotal3.innerHTML = (Number(billTotal3.innerHTML) + 0.75).toFixed(2);
+    smsElement += 0.75;
+    smsTotal3.innerHTML = smsElement.toFixed(2);
   }
+  theTotal = callElement + smsElement;
+  billTotal3.innerHTML = theTotal.toFixed(2);
   color.classList.remove("warning");
   colorSetting.classList.remove("danger");
-  if (Number(billTotal3.innerHTML) >= 30 && Number(billTotal3.innerHTML) < 50) {
+  if (theTotal >= 30 && theTotal < 50) {
     color.classList.add("warning");
-  } else if (Number(billTotal3.innerHTML) >= 50) {
+  } else if (theTotal >= 50) {
     color.classList.add("danger");
   }
 });

@@ -33,52 +33,53 @@ let warningLevel = document.querySelector(".warningLevelSetting");
 let criticalLevel = document.querySelector(".criticalLevelSetting");
 updtBtn.addEventListener("click", function () {
   if (callCost.value !== "") {
-    let callValue = Number(callCost.value);
-    callCost.value = callValue;
+    callCost.value = Number(callCost.value);
   }
   if (smsCost.value !== "") {
-    let smsValue = Number(smsCost.value);
-    smsCost.value = smsValue;
+    smsCost.value = Number(smsCost.value);
   }
   if (warningLevel.value !== "") {
-    let warningValue = Number(warningLevel.value);
-    warningLevel.value = warningValue;
+    warningLevel.value = Number(warningLevel.value);
   }
   if (criticalLevel.value !== "") {
-    let criticalValue = Number(criticalLevel.value);
-    criticalLevel.value = criticalValue;
+    criticalLevel.value = Number(criticalLevel.value);
   }
 });
 
 btnAdd.addEventListener("click", function () {
   const radioBtn = document.querySelector(".billItemTypeWithSettings:checked");
+  let callPrice = Number(callTotalSettings.innerHTML);
+  let smsPrice = Number(smsTotalSettings.innerHTML);
+  let totalPrice = Number(totalSettings.innerHTML);
+  if (totalPrice >= Number(criticalLevel.value) && radioBtn.value === "sms") {
+    radioBtn.value = "";
+  }
+  if (totalPrice >= Number(criticalLevel.value) && radioBtn.value === "call") {
+    radioBtn.value = "";
+  }
   if (radioBtn.value === "call") {
-    callTotalSettings.innerHTML = (
-      Number(callCost.value) + Number(callTotalSettings.innerHTML)
-    ).toFixed(2);
-
-    totalSettings.innerHTML = (
-      Number(callCost.value) + Number(totalSettings.innerHTML)
-    ).toFixed(2);
+    callPrice += Number(callCost.value);
+    callTotalSettings.innerHTML = callPrice.toFixed(2);
   }
   if (radioBtn.value === "sms") {
-    smsTotalSettings.innerHTML = (
-      Number(smsCost.value) + Number(smsTotalSettings.innerHTML)
-    ).toFixed(2);
-
-    totalSettings.innerHTML = (
-      Number(smsCost.value) + Number(totalSettings.innerHTML)
-    ).toFixed(2);
+    smsPrice += Number(smsCost.value);
+    smsTotalSettings.innerHTML = smsPrice.toFixed(2);
   }
-  colorSetting.classList.remove("warning");
-  colorSetting.classList.remove("danger");
+
   if (
-    Number(totalSettings.innerHTML) >= Number(warningLevel.value) &&
-    Number(totalSettings.innerHTML) < Number(criticalLevel.value)
+    callPrice >= 0 &&
+    smsPrice >= 0 &&
+    totalPrice <= Number(criticalLevel.value)
+  ) {
+    totalPrice = callPrice + smsPrice;
+    totalSettings.innerHTML = totalPrice.toFixed(2);
+  }
+  if (
+    totalPrice >= Number(warningLevel.value) &&
+    totalPrice < Number(criticalLevel.value)
   ) {
     colorSetting.classList.add("warning");
-  }
-  if (Number(totalSettings.innerHTML) >= Number(criticalLevel.value)) {
+  } else if (totalPrice >= Number(warningLevel.value)) {
     colorSetting.classList.add("danger");
   }
 });

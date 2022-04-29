@@ -21,29 +21,28 @@ const totElm = document.querySelector(".red");
 
 //add event listener and bill function
 addBtn.addEventListener("click", function () {
+  let callElm = Number(callTotal.innerHTML);
+  let smsElm = Number(smsTotal.innerHTML);
+  let total = Number(billTotal2.innerHTML);
   if (billText.value.toLowerCase() === "call") {
-    callTotal.innerHTML = (Number(callTotal.innerHTML) + 2.75).toFixed(2);
-    billTotal2.innerHTML = (Number(billTotal2.innerHTML) + 2.75).toFixed(2);
+    callElm += 2.75;
+    callTotal.innerHTML = callElm.toFixed(2);
   }
   if (billText.value.toLowerCase() === "sms") {
-    smsTotal.innerHTML = (Number(smsTotal.innerHTML) + 0.75).toFixed(2);
+    smsElm += 0.75;
+    smsTotal.innerHTML = smsElm.toFixed(2);
+  }
+  if (smsElm >= 0 && callElm >= 0) {
+    total = callElm + smsElm;
+    billTotal2.innerHTML = total.toFixed(2);
+  }
 
-    billTotal2.innerHTML = (Number(billTotal2.innerHTML) + 0.75).toFixed(2);
-  }
-  if (
-    billText.value.toLowerCase() !== "call" ||
-    billText.value.toLowerCase() !== "sms"
-  ) {
-    callTotal.innerHTML = (Number(callTotal.innerHTML) + 0).toFixed(2);
-    smsTotal.innerHTML = (Number(smsTotal.innerHTML) + 0).toFixed(2);
-    billTotal2.innerHTML = (Number(billTotal2.innerHTML) + 0).toFixed(2);
-  }
   totElm.classList.remove("warning");
   totElm.classList.remove("danger");
-  if (Number(billTotal2.innerHTML) >= 30 && Number(billTotal2.innerHTML) < 50) {
+  if (total >= 30 && total < 50) {
     totElm.classList.add("warning");
-  }
-  if (Number(billTotal2.innerHTML) >= 50) {
+  } else if (total >= 50) {
     totElm.classList.add("danger");
   }
 });
+
