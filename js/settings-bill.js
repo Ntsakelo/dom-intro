@@ -32,6 +32,25 @@ let smsCost = document.querySelector(".smsCostSetting");
 let warningLevel = document.querySelector(".warningLevelSetting");
 let criticalLevel = document.querySelector(".criticalLevelSetting");
 updtBtn.addEventListener("click", function () {
+  const smsBtn = document.querySelector(".sms");
+  const callBtn = document.querySelector(".call");
+  let thisAmount = Number(totalSettings.innerHTML);
+  colorSetting.classList.remove("warning");
+  colorSetting.classList.remove("danger");
+  if (
+    thisAmount >= Number(warningLevel.value) &&
+    thisAmount < Number(criticalLevel.value)
+  ) {
+    colorSetting.classList.add("warning");
+  } else if (thisAmount >= Number(warningLevel.value)) {
+    colorSetting.classList.add("danger");
+  }
+  if (smsBtn.value === "SMS") {
+    smsBtn.value = "sms";
+  }
+  if (callBtn.value === "CALL") {
+    callBtn.value = "call";
+  }
   if (callCost.value !== "") {
     callCost.value = Number(callCost.value);
   }
@@ -45,17 +64,16 @@ updtBtn.addEventListener("click", function () {
     criticalLevel.value = Number(criticalLevel.value);
   }
 });
-
 btnAdd.addEventListener("click", function () {
   const radioBtn = document.querySelector(".billItemTypeWithSettings:checked");
   let callPrice = Number(callTotalSettings.innerHTML);
   let smsPrice = Number(smsTotalSettings.innerHTML);
   let totalPrice = Number(totalSettings.innerHTML);
   if (totalPrice >= Number(criticalLevel.value) && radioBtn.value === "sms") {
-    radioBtn.value = "";
+    radioBtn.value = "SMS";
   }
   if (totalPrice >= Number(criticalLevel.value) && radioBtn.value === "call") {
-    radioBtn.value = "";
+    radioBtn.value = "CALL";
   }
   if (radioBtn.value === "call") {
     callPrice += Number(callCost.value);
