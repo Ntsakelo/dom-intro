@@ -37,20 +37,13 @@ addBtn.addEventListener("click", function () {
     billTotal2.innerHTML = total.toFixed(2);
   }
 
-<<<<<<< HEAD
   // totElm.classList.remove("warning");
   // totElm.classList.remove("danger");
-=======
   totElm.classList.remove("warning");
   totElm.classList.remove("danger");
->>>>>>> a65a1bc7e8f88f9b6222d9bc533583f3082c83e9
   if (total >= 30 && total < 50) {
     totElm.classList.add("warning");
   } else if (total >= 50) {
     totElm.classList.add("danger");
   }
 });
-<<<<<<< HEAD
-=======
-
->>>>>>> a65a1bc7e8f88f9b6222d9bc533583f3082c83e9
