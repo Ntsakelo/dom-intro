@@ -45,10 +45,10 @@ updtBtn.addEventListener("click", function () {
   } else if (thisAmount >= Number(warningLevel.value)) {
     colorSetting.classList.add("danger");
   }
-  if (smsBtn.value === "SMS") {
+  if (smsBtn.value === "") {
     smsBtn.value = "sms";
   }
-  if (callBtn.value === "CALL") {
+  if (callBtn.value === "") {
     callBtn.value = "call";
   }
   if (callCost.value !== "") {
@@ -70,10 +70,10 @@ btnAdd.addEventListener("click", function () {
   let smsPrice = Number(smsTotalSettings.innerHTML);
   let totalPrice = Number(totalSettings.innerHTML);
   if (totalPrice >= Number(criticalLevel.value) && radioBtn.value === "sms") {
-    radioBtn.value = "SMS";
+    radioBtn.value = "";
   }
   if (totalPrice >= Number(criticalLevel.value) && radioBtn.value === "call") {
-    radioBtn.value = "CALL";
+    radioBtn.value = "";
   }
 
   if (radioBtn.value === "call") {
